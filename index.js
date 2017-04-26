@@ -11,7 +11,15 @@ var logger = new (winston.Logger)({
     ]
 });
 
+app.get('/', function (req, res) {
+  //logger.info('client connected');
+  res.end('hello world');
+})
+
 app.get('/data/:message', function (req, res) {
+  //logger.info(req.params.message);
+  res.header('Transfer-Encoding', '');
+  res.set("Connection", "close");
   res.end(JSON.stringify({ message: req.params.message }));
 })
 
